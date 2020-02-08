@@ -1,4 +1,4 @@
-// generated code; DO NOT EDIT; 2020-02-08 17:33:42.977851 +0100 CET m=+0.077461505"
+// generated code; DO NOT EDIT; 2020-02-08 19:17:28.420903 +0100 CET m=+0.027194970"
 //
 // Client for Choria RPC Agent 'goss'' Version 0.0.1 generated using Choria version 0.13.1
 
