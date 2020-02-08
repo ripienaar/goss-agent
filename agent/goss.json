@@ -1,0 +1,88 @@
+{
+  "$schema": "https://choria.io/schemas/mcorpc/ddl/v1/agent.json",
+  "metadata": {
+    "license": "Apache-2",
+    "author": "R.I.Pienaar \u003crip@devco.net\u003e",
+    "timeout": 20,
+    "name": "goss",
+    "version": "0.0.1",
+    "url": "https://devco.net",
+    "description": "System validation using Goss",
+    "provider": "external"
+  },
+  "actions": [
+    {
+      "action": "validate",
+      "input": {
+        "sleep": {
+          "prompt": "Sleep Duration",
+          "description": "Time to sleep between retries when",
+          "type": "string",
+          "default": "1s",
+          "optional": true,
+          "validation": "\\d+[hms]",
+          "maxlength": 3
+        },
+        "gossfile": {
+          "prompt": "Goss file",
+          "description": "Path to the gossfile or it's contents as YAML/JSON",
+          "type": "string",
+          "optional": false,
+          "validation": ".+",
+          "maxlength": 10240
+        },
+        "max_concurrency": {
+          "prompt": "Maximum Concurrency",
+          "description": "Max number of tests to run concurrently",
+          "type": "number",
+          "default": 50,
+          "optional": true
+        },
+        "package": {
+          "prompt": "Package Type",
+          "description": "The type of package manager to use",
+          "type": "list",
+          "optional": true,
+          "list": [
+            "rpm",
+            " deb",
+            " apk",
+            " pacman"
+          ]
+        },
+        "retry_timeout": {
+          "prompt": "Retry Timeout",
+          "description": "Retry on failure so long as elapsed + sleep time is less than this",
+          "type": "string",
+          "optional": true,
+          "validation": "\\d+[hms]",
+          "maxlength": 3
+        },
+        "vars": {
+          "prompt": "Variables",
+          "description": "Path to the variables or it's contents as YAML/JSON",
+          "type": "string",
+          "optional": true,
+          "validation": ".+",
+          "maxlength": 10240
+        }
+      },
+      "output": {
+        "code": {
+          "description": "Exit Code",
+          "display_as": "Exit Code",
+          "default": 1,
+          "type": "integer"
+        },
+        "result": {
+          "description": "Output Result as JSON",
+          "display_as": "Output",
+          "default": "{}",
+          "type": "string"
+        }
+      },
+      "display": "failed",
+      "description": "Validate the system"
+    }
+  ]
+}
